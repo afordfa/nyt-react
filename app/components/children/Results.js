@@ -10,23 +10,31 @@ var helpers = require("../utils/helpers.js");
 // Create the Search Component
 var Results = React.createClass({
 
-  handleSave: function(){
+  handleSave: function(event){
     console.log("saved");
+    console.log(event.target);
+    console.log(this.props.apiResults[event.target.value]);
+    console.log(this.props.apiResults[event.target.value].web_url);
+    console.log(this.props.apiResults[event.target.value].headline.main);
 
-
-      helpers.postHistory(this.state.searchTerm).then(function() {
-      console.log("Updated!");
-
-    // After we've done the post... then get the updated history
-      helpers.getHistory().then(function(response) {
-        console.log("Current History", response.data);
-
-        console.log("History", response.data);
-
-        this.setState({ history: response.data });
-
-      }.bind(this));
+    helpers.postHistory(this.props.apiResults[event.target.value].web_url, this.props.apiResults[event.target.value].headline.main).then(function(){
+      console.log("updated");
     }.bind(this));
+
+
+    //   helpers.postHistory(this.state.searchTerm).then(function() {
+    //   console.log("Updated!");
+
+    // // After we've done the post... then get the updated history
+    //   helpers.getHistory().then(function(response) {
+    //     console.log("Current History", response.data);
+
+    //     console.log("History", response.data);
+
+    //     this.setState({ history: response.data });
+
+    //   }.bind(this));
+    // }.bind(this));
   },
 
 
@@ -46,7 +54,7 @@ var Results = React.createClass({
 
         <div className="panel-body">
           <ul className="list-group col-md-8 col-md-offset-2">
-            {this.props.apiResults.map(function(search) {              
+            {this.props.apiResults.map(function(search, i) {              
               return (
                 <li key={search._id} className="list-group-item" style={ {borderWidth: "0px"} }>
                   <div className="input-group">
@@ -55,7 +63,7 @@ var Results = React.createClass({
                       <i> {search.pub_date.substring(0, 10)}</i>
                     </div>       
                     <span className="input-group-btn">
-                      <button className="btn btn-success" type="button" onClick={that.handleSave} value={search._id}>Save</button>
+                      <button className="btn btn-success" type="button" onClick={that.handleSave} value={i}>Save</button>
                     </span>
                   </div>
                 </li>

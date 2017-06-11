@@ -58,9 +58,13 @@ runQuery: function(topic, beginYear, endYear){
     return axios.get("/api");
   },
 
+
   // This function posts new searches to our database.
-  postHistory: function(location) {
-    return axios.post("/api", { location: location });
+  postHistory: function(title, link) {
+    return axios.post("/api", { 
+      title: title,
+      url: link 
+    });
   }
 };
 
