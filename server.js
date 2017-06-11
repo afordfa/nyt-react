@@ -24,12 +24,13 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // Connect to localhost if not a production environment
-if(process.env.NODE_ENV == 'production'){
+if(process.env.MONGODB_URI) {
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
-  mongoose.connect('mongodb://heroku_kbdv0v69:860jh71jd1iu5m5639gjr0gg9l@ds129028.mlab.com:29028/heroku_kbdv0v69');
+  mongoose.connect(process.env.MONGODB_URI);
 }
 else{
   mongoose.connect('mongodb://localhost/test');
+  // mongoose.connect(databaseUri);
 }
 var db = mongoose.connection;
 
