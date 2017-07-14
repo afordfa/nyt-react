@@ -2,4 +2,4 @@
 NY Times React Search
 
 
-Deployed at https://secure-river-95047.herokuapp.com/
+Deployed at https://my-nyt-app.herokuapp.com/
