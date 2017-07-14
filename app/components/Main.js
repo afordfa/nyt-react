@@ -76,6 +76,7 @@ var Main = React.createClass({
         <div className="page-header">
           <h1 className="text-center">The New York Times</h1>
           <h2 className="text-center">Search The New York Times and save results.</h2>
+          <a href="https://github.com/afordfa/nyt-react" className="text-center">View Github</a>
         </div>
 
         <Form setSearchFields={this.setSearchFields} />

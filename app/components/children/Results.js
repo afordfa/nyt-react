@@ -17,31 +17,16 @@ var Results = React.createClass({
     console.log(this.props.apiResults[event.target.value].web_url);
     console.log(this.props.apiResults[event.target.value].headline.main);
 
-    helpers.postHistory(this.props.apiResults[event.target.value].web_url, this.props.apiResults[event.target.value].headline.main).then(function(){
+    helpers.postHistory(this.props.apiResults[event.target.value].headline.main, this.props.apiResults[event.target.value].web_url).then(function(){
       console.log("updated");
     }.bind(this));
-
-
-    //   helpers.postHistory(this.state.searchTerm).then(function() {
-    //   console.log("Updated!");
-
-    // // After we've done the post... then get the updated history
-    //   helpers.getHistory().then(function(response) {
-    //     console.log("Current History", response.data);
-
-    //     console.log("History", response.data);
-
-    //     this.setState({ history: response.data });
-
-    //   }.bind(this));
-    // }.bind(this));
   },
 
 
   // Here we render the Search Results Panel
   render: function() {
 
-    // http://stackoverflow.com/questions/29810914/react-js-onclick-cant-pass-value-to-method
+    
     var that = this;
 
     return (

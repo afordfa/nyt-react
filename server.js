@@ -68,12 +68,13 @@ app.get("/api", function(req, res) {
 
 // This is the route we will send POST requests to save each search.
 app.post("/api", function(req, res) {
-  console.log("BODY: " + req.body.location);
+  console.log("BODY: " + req.body);
 
   // Here we'll save the location based on the JSON input.
   // We'll use Date.now() to always get the current date time
   History.create({
-    location: req.body.location,
+    title: req.body.title,
+    url: req.body.url,
     date: Date.now()
   }, function(err) {
     if (err) {
@@ -84,6 +85,9 @@ app.post("/api", function(req, res) {
     }
   });
 });
+
+
+
 
 // -------------------------------------------------
 
